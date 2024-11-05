@@ -1,16 +1,16 @@
-import imgBlackPawn from "../../../../img/icon/black/gamesPawn.svg";
-import imgBlackRook from "../../../../img/icon/black/gamesRook.svg";
-import imgBlackKnight from "../../../../img/icon/black/gamesKnight.svg";
-import imgBlackBishop from "../../../../img/icon/black/gamesBishop.svg";
-import imgBlackKing from "../../../../img/icon/black/gamesKing.svg";
-import imgBlackQueen from "../../../../img/icon/black/gamesQueen.svg";
+import imgBlackPawn from "../../../../assets/icon/figures/black/gamesPawn.svg";
+import imgBlackRook from "../../../../assets/icon/figures/black/gamesRook.svg";
+import imgBlackKnight from "../../../../assets/icon/figures/black/gamesKnight.svg";
+import imgBlackBishop from "../../../../assets/icon/figures/black/gamesBishop.svg";
+import imgBlackKing from "../../../../assets/icon/figures/black/gamesKing.svg";
+import imgBlackQueen from "../../../../assets/icon/figures/black/gamesQueen.svg";
 
-import imgWhitePawn from "../../../../img/icon/white/gamesPawn.svg";
-import imgWhiteRook from "../../../../img/icon/white/gamesRook.svg";
-import imgWhiteKnight from "../../../../img/icon/white/gamesKnight.svg";
-import imgWhiteBishop from "../../../../img/icon/white/gamesBishop.svg";
-import imgWhiteKing from "../../../../img/icon/white/gamesKing.svg";
-import imgWhiteQueen from "../../../../img/icon/white/gamesQueen.svg";
+import imgWhitePawn from "../../../../assets/icon/figures/white/gamesPawn.svg";
+import imgWhiteRook from "../../../../assets/icon/figures/white/gamesRook.svg";
+import imgWhiteKnight from "../../../../assets/icon/figures/white/gamesKnight.svg";
+import imgWhiteBishop from "../../../../assets/icon/figures/white/gamesBishop.svg";
+import imgWhiteKing from "../../../../assets/icon/figures/white/gamesKing.svg";
+import imgWhiteQueen from "../../../../assets/icon/figures/white/gamesQueen.svg";
 
 const figurinesArray = {
   black: {
