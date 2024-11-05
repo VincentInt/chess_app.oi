@@ -2,6 +2,7 @@ import "./ChessBoard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
 import { moveFigureAction } from "../../../store/matrixChessBoardReducer/matrixChessBoardReducer.js";
+import DestroyedCheck from "./DestroyedCheck/DestroyedCheck.jsx";
 import figurinesArray from "./module/figures.js";
 import highlightingMove from "./module/highlightingMove.js";
 
@@ -26,6 +27,7 @@ const ChessBoard = () => {
       return { index: index, ...chessBoard[index] };
     });
   };
+
   const onMoveFigure = (index, damage = []) => {
     const filteredDamage = damage.filter(
       (item) => chessBoard[item]?.type && chessBoard[item]?.team !== moveTeam
@@ -41,6 +43,7 @@ const ChessBoard = () => {
     setSelectFigure({});
     setHighlightingKeys([]);
   };
+
   useEffect(() => {
     if (selectFigure?.type) {
       highlightingMoveFunc();
@@ -129,6 +132,7 @@ const ChessBoard = () => {
           })}
         </div>
       </div>
+      <DestroyedCheck />
     </div>
   );
 };

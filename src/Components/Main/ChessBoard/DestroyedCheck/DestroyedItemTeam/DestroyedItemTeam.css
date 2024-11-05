@@ -1,0 +1,20 @@
+.container_destroyed {
+  width: 450px;
+  height: 250px;
+  .destroyed {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    h3 {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.748);
+    }
+    .destroyed_item {
+      width: 32px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.main_container_destroyed {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  .position_destroyed {
+    position: absolute;
+  }
+}
