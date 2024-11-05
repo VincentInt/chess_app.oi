@@ -1,12 +1,12 @@
 .main_container_chessboard {
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   margin-top: 250px;
 }
 .container_chessboard {
   display: flex;
   flex-wrap: wrap;
-  max-width: calc(100% / 4);
+  width: calc(55px*9);
   .white_cell_board,
   .black_cell_board {
     display: flex;

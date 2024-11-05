@@ -47,6 +47,7 @@ const ChessBoard = () => {
       setHighlightingKeys([]);
     }
   }, [selectFigure]);
+ 
   return (
     <div className="main_container_chessboard">
       <div className="container_chessboard">
@@ -59,6 +60,7 @@ const ChessBoard = () => {
           const styleDamage = highlightingKeys
             ?.map((item) => item.damage)
             ?.flat();
+            
           return (
             <div
               key={index}
