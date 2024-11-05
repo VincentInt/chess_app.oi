@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="games">
+  <defs>
+    <filter id="a" width="1.028" height="1.036" x="-.014" y="-.018" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation=".015"></feGaussianBlur>
+    </filter>
+    <filter id="b" width="1.058" height="1.036" x="-.029" y="-.018" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation=".015"></feGaussianBlur>
+    </filter>
+  </defs>
+  <g transform="translate(-278.36 235.918)">
+    <path fill="#92a3b3" d="M298.369-232.885c4.456 3.934 6.941 12.416 5.564 19.467l-3.042.008"></path>
+    <path fill="#cdd7e0" fill-rule="evenodd" d="M295.776-233.335c-.884 1.228-2.343 1.95-3.894 1.93-.582 1.514-2.096 2.654-3.988 3-1.42.106-2.596 1.034-2.923 2.3-.327 1.267.269 2.584 1.476 3.26 1.207.676 2.749.557 3.817-.294l-.358-.358c2.165 1.192 5.162.892 6.858-.686l-.722.59c-.985 1.275-1.048 2.31-4.657 3.219-3.609.909-4.972 4.818-4.244 7.986l1.757-.005v2.983h9.003l-.001-3.006 2.161-.003c2.83-6.198 2.34-13.677-1.163-18.985"></path>
+    <path fill="none" stroke="#12141a" stroke-linecap="round" stroke-linejoin="round" d="M288.412-224.9a15.767 11.001 0 0 1-2.506 1.487m7.355-4.997h1"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" stroke="#92a3b3" d="M289.4-211.418h8"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="m294.336-212.393 3.564-.023 2.161-.003c2.83-6.198 2.34-13.677-1.163-18.985 3.881 14.486-4.562 19.011-4.562 19.011z"></path>
+    <path fill="none" stroke="#12141a" stroke-linecap="round" stroke-linejoin="round" d="M298.369-232.885c4.456 3.934 6.941 12.416 5.564 19.467l-3.042.008"></path>
+    <path fill="#dce4ea" fill-rule="evenodd" d="m297.228-224.183-1.186.59c-.985 1.275-1.048 2.31-4.657 3.219-3.609.909-4.972 4.818-4.244 7.986l3.288-.005c.97-7.525 5.97-5.525 6.799-11.79zm-1.452-9.152c-.884 1.228-2.343 1.95-3.894 1.93-.582 1.514-2.096 2.654-3.988 3-1.42.106-2.596 1.034-2.923 2.3-.148.574-.014 1.618.43 2.195.494-4.008 10.998-4.454 10.375-9.425z"></path>
+    <path fill="none" stroke="#12141a" stroke-linecap="round" stroke-linejoin="round" d="M295.776-233.335c-.884 1.228-2.343 1.95-3.894 1.93-.582 1.514-2.096 2.654-3.988 3-1.42.106-2.596 1.034-2.923 2.3-.327 1.267.269 2.584 1.476 3.26 1.207.676 2.749.557 3.817-.294l-.358-.358c2.165 1.192 5.162.892 6.858-.686l-.722.59c-.985 1.275-1.048 2.31-4.657 3.219-3.609.909-4.972 4.791-4.244 7.959l1.757-.005v3.01h9.003l-.001-3.006 2.161-.003c2.83-6.198 2.34-13.677-1.163-18.985z"></path>
+    <path fill="none" stroke="#12141a" d="M288.4-212.418h10"></path>
+    <path fill="#cdd7e0" d="M298.747-229.413c.687-2.642-.983-5.32-3.82-6.005.3.355.636 1.043.824 1.845.189.801.206 1.611.045 2.158"></path>
+    <path fill="#92a3b3" d="M298.747-229.132c.687-2.642-.983-5.6-3.82-6.286.3.355 2.98 2.059 3.356 5.954"></path>
+    <path fill="#dce4ea" d="M296.034-230.992c1.171-.434.997-2.508-.527-4.035.193.423.483 1.15.256 4.105z"></path>
+    <path fill="none" stroke="#12141a" stroke-linecap="round" stroke-linejoin="round" d="M298.747-229.413c.687-2.642-.983-5.32-3.82-6.005.3.355.636 1.043.824 1.845.189.801.206 1.611.045 2.158"></path>
+    <path fill="#1b1e34" stroke="#12141a" stroke-linecap="round" d="M286.025-207.412c-.902 0-1.626.615-1.626 1.38v.235l.002.026h-.002v1.353h18v-1.353h-.002l.002-.026v-.236c0-.764-.723-1.379-1.625-1.379h-14.75z" color="#000" overflow="visible" style="isolation:auto;mix-blend-mode:normal"></path>
+    <path fill="#2e303e" fill-rule="evenodd" d="M287.502-206.925h2c-.33.366-.446.718-.46 1.06-.013.334.014.5.014.94h-2.073c0-.578-.014-.68-.005-1.02.01-.327.185-.653.524-.98z"></path>
+    <rect width="13.832" height="3" x="286.517" y="-210.412" fill="#cdd7e0" stroke="#12141a" rx="1.5" ry="1.5"></rect>
+    <path fill="#fff" fill-rule="evenodd" d="M288.488-209.912h2c-.642.711-.587 1.374 0 2h-2c-.706-.667-.693-1.333 0-2z" filter="url(#a)" opacity=".35"></path>
+    <path fill="#fff" fill-rule="evenodd" d="M291.204-209.912h.713c-.641.711-.586 1.374 0 2h-.712c-.706-.667-.693-1.333 0-2z" filter="url(#b)" opacity=".35"></path>
+    <path fill="#24273b" fill-rule="evenodd" d="M290.251-206.925h.777c-.33.366-.446.718-.46 1.06-.013.334.014.5.014.94h-.85c0-.578-.014-.68-.005-1.02.01-.327.185-.653.524-.98z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M298.575-209.912h-1.1c.641.711.586 1.374 0 2h1.1c.706-.667.693-1.333 0-2z"></path>
+    <path fill="#16192b" fill-rule="evenodd" d="M300.189-206.925h-1.371c.33.366.446.718.46 1.06.013.334-.014.5-.014.94h1.444c0-.578.014-.68.005-1.02-.01-.327-.185-.653-.524-.98z"></path>
+    <path fill="#fff" fill-rule="evenodd" d="M288-210.208c-.145.146-.611.306-.611.306s.468.163.612.306c.143.144.306.607.306.607s.162-.463.306-.607c.144-.143.612-.306.612-.306s-.466-.16-.612-.306c-.146-.146-.306-.626-.306-.626s-.16.48-.306.626z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal"></path>
+  </g>
+</svg>

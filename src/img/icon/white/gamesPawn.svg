@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="games">
+  <g transform="translate(-257.794 233.418)">
+    <path fill="#cdd7e0" fill-rule="evenodd" d="M275.901-223.398c-.058 4.89.385 8.996 1.432 12.927h-7.078c1.047-3.93 1.467-8.037 1.41-12.927z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M275.697-222.842c-.056 4.687.375 8.623 1.397 12.391h-6.906c4.322-1.158 5.51-1.559 5.51-12.39z"></path>
+    <path fill="#1b1e34" stroke="#12141a" stroke-linecap="round" d="M267.649-207.412c-.752 0-1.355.615-1.355 1.38v.235l.002.026h-.002v1.353h15v-1.353h-.002l.002-.026v-.236c0-.764-.603-1.379-1.354-1.379h-12.291z" color="#000" overflow="visible" style="isolation:auto;mix-blend-mode:normal"></path>
+    <rect width="5" height="1" x="271.294" y="-225.897" fill="#f49d3b" rx="0" ry="0"></rect>
+    <rect width="7" height="2" x="270.294" y="-225.397" fill="#cdd7e0" stroke="#12141a" rx="1" ry="1"></rect>
+    <path fill="#2e303e" fill-rule="evenodd" d="M268.321-206.925h2c-.33.366-.446.718-.46 1.06-.013.334.014.5.014.94h-2.073c0-.578-.014-.68-.005-1.02.01-.327.185-.653.524-.98z"></path>
+    <rect width="11" height="3" x="268.294" y="-210.412" fill="#cdd7e0" stroke="#12141a" rx="1.193" ry="1.5"></rect>
+    <path fill="#fff" fill-rule="evenodd" d="M270.318-209.912h2c-.641.711-.586 1.374 0 2h-2c-.705-.667-.692-1.333 0-2zm1.738-14.985h1c-.32.355-.293.687 0 1h-1c-.352-.333-.346-.667 0-1zm.98 14.985h.712c-.641.711-.586 1.374 0 2h-.712c-.706-.667-.693-1.333 0-2z" opacity=".35"></path>
+    <path fill="#24273b" fill-rule="evenodd" d="M271.07-206.925h.777c-.33.366-.447.718-.46 1.06-.013.334.014.5.014.94h-.85c0-.578-.014-.68-.005-1.02.01-.327.185-.653.524-.98z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M277.27-209.912h-1.101c.642.711.586 1.374 0 2h1.1c.706-.667.693-1.333 0-2z"></path>
+    <path fill="#16192b" fill-rule="evenodd" d="M278.267-206.925h-1.37c.329.366.446.718.459 1.06.013.334-.014.5-.014.94h1.444c0-.578.014-.68.005-1.02-.009-.327-.185-.653-.524-.98z"></path>
+    <circle cx="273.794" cy="-227.918" r="2.5" fill="#cdd7e0"></circle>
+    <path fill="#e1e7f0" fill-rule="evenodd" d="M272.544-225.918h1c-.676-1.101-.723-2.747 0-4-1.011 1.012-1.625 2.917-1 4z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" stroke="#92a3b3" d="M271.826-222.39h3.966"></path>
+    <path fill="none" stroke="#dce4ea" d="M271.255-210.471c1.048-3.93 1.468-8.037 1.41-12.927" opacity=".6"></path>
+    <path fill="none" stroke="#12141a" d="M275.901-223.398c-.058 4.89.385 8.996 1.432 12.927h-7.078c1.047-3.93 1.467-8.037 1.41-12.927z"></path>
+    <circle cx="273.794" cy="-227.918" r="2.5" fill="none" stroke="#12141a" stroke-linecap="round" stroke-linejoin="round"></circle>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M275.544-224.897h-1c.321.355.293.687 0 1h1c.353-.333.346-.667 0-1z"></path>
+    <path fill="#fff" fill-rule="evenodd" d="M271.807-225.207c-.146.146-.612.307-.612.307s.468.162.612.306c.144.143.306.606.306.606s.163-.463.306-.606c.144-.144.612-.306.612-.306s-.466-.16-.612-.307c-.146-.146-.306-.626-.306-.626s-.16.48-.306.626z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal"></path>
+  </g>
+</svg>
