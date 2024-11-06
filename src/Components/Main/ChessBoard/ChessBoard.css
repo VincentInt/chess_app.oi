@@ -1,47 +1,42 @@
-.main_container_chessboard {
+.container_chessboard {
   display: flex;
-  justify-content: center;
-  margin-top: 250px;
-  .container_chessboard {
+  min-width: calc(55px * 9);
+  .chessboard {
     display: flex;
-    min-width: calc(55px * 9);
-
-    .chessboard {
+    flex-wrap: wrap;
+    max-width: calc(55px * 9);
+    .white_cell_board,
+    .black_cell_board {
       display: flex;
-      flex-wrap: wrap;
-      max-width: calc(55px * 9);
-      .white_cell_board,
-      .black_cell_board {
+      justify-content: center;
+      align-items: center;
+      width: 55px;
+      height: 55px;
+      border: 1px solid rgba(255, 255, 255, 0.554);
+      .move_cell,
+      .damage_move_cell {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 55px;
-        height: 55px;
-        border: 1px solid rgba(255, 255, 255, 0.554);
-        .move_cell,
-        .damage_move_cell {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 86px;
+        background-color: rgb(255, 0, 0);
+        transition: 0.5s all ease-in;
+      }
+      .damage_move_cell {
+        background-color: rgba(255, 0, 0, 0.35);
+      }
+      .figure {
+        width: 75%;
+        transition: 0.25s all ease-in;
+        img {
           width: 100%;
-          height: 100%;
-          border-radius: 86px;
-          background-color: rgb(255, 0, 0);
-          transition: 0.5s all ease-in;
-        }
-        .damage_move_cell {
-          background-color: rgba(255, 0, 0, 0.35);
-        }
-        .figure {
-          width: 75%;
-          transition: 0.25s all ease-in;
-          img {
-            width: 100%;
-            background-color: transparent;
-          }
+          background-color: transparent;
         }
       }
     }
+
     .white_cell_board {
       background-color: rgb(255, 246, 220);
     }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import highlightingMove from "../module/highlightingMove";
-import figurinesArray from "../module/figures";
+import highlightingMove from "../../module/highlightingMove";
+import figurinesArray from "../../module/figures";
 import { moveFigureAction } from "../../../../store/matrixChessBoardReducer/matrixChessBoardReducer";
 
 const ChessCell = () => {
