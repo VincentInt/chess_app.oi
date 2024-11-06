@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="games">
+  <g transform="translate(-194.949 235.916)">
+    <rect width="6" height="3.5" x="207.949" y="-233.415" fill="#cdd7e0" stroke="#12141a" rx="1.742" ry="1.75"></rect>
+    <path fill="#cdd7e0" fill-rule="evenodd" d="M213.952-229.509c-.082 6.793.544 13.597 2.025 19.058h-10.01c1.482-5.46 2.075-12.265 1.994-19.058z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M213.952-228.41c-.082 6.794.544 12.498 2.025 17.959h-10.01c6.265-1.679 7.985-2.259 7.985-17.958z"></path>
+    <path fill="#1b1e34" stroke="#12141a" stroke-linecap="round" d="M203.574-207.412c-.902 0-1.625.615-1.625 1.38v.235l.002.026h-.002v1.353h18v-1.353h-.002l.002-.026v-.236c0-.764-.724-1.379-1.626-1.379h-14.749z" color="#000" overflow="visible" style="isolation:auto;mix-blend-mode:normal"></path>
+    <rect width="5.629" height="1" x="208.134" y="-223.915" fill="#92a3b3" rx="0" ry="0"></rect>
+    <path fill="none" stroke="#dce4ea" d="M206.99-210.451c1.482-5.46 1.957-11.464 1.867-18.958" opacity=".6"></path>
+    <path fill="#2e303e" fill-rule="evenodd" d="M205.051-206.925h2c-.33.366-.446.718-.46 1.06-.013.334.014.5.014.94h-2.073c0-.578-.014-.68-.005-1.02.01-.327.185-.653.524-.98z"></path>
+    <rect width="13.832" height="3" x="204.066" y="-210.412" fill="#cdd7e0" stroke="#12141a" rx="1.5" ry="1.5"></rect>
+    <path fill="#fff" fill-rule="evenodd" d="M206.037-209.912h2c-.642.711-.587 1.374 0 2h-2c-.706-.667-.693-1.333 0-2zm2.717 0h.712c-.641.711-.586 1.374 0 2h-.712c-.706-.667-.693-1.333 0-2z" opacity=".35"></path>
+    <path fill="#24273b" fill-rule="evenodd" d="M207.8-206.925h.777c-.33.366-.446.718-.46 1.06-.013.334.014.5.014.94h-.85c0-.578-.014-.68-.005-1.02.01-.327.185-.653.524-.98z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M216.124-209.912h-1.1c.641.711.586 1.374 0 2h1.1c.706-.667.693-1.333 0-2z"></path>
+    <path fill="#16192b" fill-rule="evenodd" d="M217.738-206.925h-1.371c.33.366.446.718.46 1.06.013.334-.014.5-.014.94h1.444c0-.578.014-.68.005-1.02-.01-.327-.185-.653-.524-.98z"></path>
+    <circle cx="210.962" cy="-234.414" r="1.001" fill="#cdd7e0" stroke="#12141a" stroke-linecap="round" stroke-linejoin="round"></circle>
+    <rect width="10" height="2" x="205.949" y="-231.415" fill="#d9e3ed" stroke="#12141a" rx="1.13" ry="1"></rect>
+    <path fill="#fff" fill-rule="evenodd" d="M208.46-230.915h1c-.32.356-.292.687 0 1h-1c-.352-.333-.345-.666 0-1z" opacity=".35"></path>
+    <path fill="none" stroke="#12141a" d="M213.952-229.609c0 7.694.544 13.697 2.025 19.158h-10.01c1.482-5.46 2.086-11.464 1.994-19.158"></path>
+    <rect width="10" height="2" x="205.949" y="-226.43" fill="#cdd7e0" stroke="#12141a" rx="1.13" ry="1"></rect>
+    <path fill="#fff" fill-rule="evenodd" d="M208.46-225.93h1c-.32.356-.292.687 0 1h-1c-.352-.333-.345-.666 0-1z" opacity=".35"></path>
+    <path fill="#cdd7e0" fill-rule="evenodd" d="M206.949-229.415h8c-.5.5-.5 2.5 0 3h-8c.5-.5.5-2.5 0-3z"></path>
+    <rect width="7" height="1" x="207.449" y="-228.903" fill="#92a3b3" rx="0" ry="0"></rect>
+    <path fill="#dce4ea" fill-rule="evenodd" stroke="#cdd7e0" d="M208.802-226.415c.5-.5.5-2.5 0-3" opacity=".6"></path>
+    <path fill="none" stroke="#12141a" d="M206.949-229.415h8c-.5.5-.5 2.5 0 3h-8c.5-.5.5-2.5 0-3z"></path>
+    <path fill="#dce4ea" fill-rule="evenodd" d="M210.442-231.915h-.977c0-.374.308-1 1.484-1-.598.16-.507.526-.507 1z"></path>
+    <path fill="#92a3b3" fill-rule="evenodd" d="M214.186-230.915h-1c.321.356.294.687 0 1h1c.353-.333.347-.666 0-1zm0 4.985h-1c.321.356.294.687 0 1h1c.353-.333.347-.666 0-1z"></path>
+    <path fill="#fff" fill-rule="evenodd" d="M207.939-231.23c-.146.146-.612.306-.612.306s.468.162.612.306c.143.143.306.606.306.606s.162-.463.306-.606c.144-.144.612-.306.612-.306s-.466-.16-.612-.306c-.146-.146-.306-.627-.306-.627s-.16.48-.306.627z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal"></path>
+  </g>
+</svg>
