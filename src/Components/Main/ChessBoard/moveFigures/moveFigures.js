@@ -15,48 +15,51 @@ const moveFigures = (
     };
   };
 
+  const moveFigures = {
+    pawn: [
+      { finallyPoint: 8 },
+      { finallyPoint: 16 },
+      {
+        finallyPoint: 7,
+        damage: [7],
+      },
+      {
+        finallyPoint: 9,
+        damage: [9],
+      },
+    ],
+  };
+
   return () => {
     const dataMove = {
       pawn: function () {
-        const moveArray = [{ finallyPoint: 8 }, { finallyPoint: 16 }].map(
-          (item) => {
-            item.finallyPoint =
-              indexSelectFigure + item.finallyPoint * teamMoveFormat;
-            return item;
-          }
-        );
-        const damageArray = [
-          {
-            finallyPoint: 7,
-            damage: [7],
-          },
-          {
-            finallyPoint: 9,
-            damage: [9],
-          },
-        ].map((item) => {
-          item.finallyPoint =
-            indexSelectFigure + item.finallyPoint * teamMoveFormat;
-          item.damage = item.damage.map(
-            (item) => indexSelectFigure + item * teamMoveFormat
-          );
-          return item;
-        });
-
-        const filteredDamageArray = damageArray.filter((item) => {
-          if (!chessBoard[item.damage]?.team) return false;
-          return chessBoard[item.damage].team !== teamSelectFigure;
-        });
         let statusLet = false;
-        const filteredMoveArray = moveArray.filter((item) => {
-          if (!statusLet) {
-            return chessBoard[item.finallyPoint]?.team
-              ? !(statusLet = true)
-              : true;
+        const moveArray = [];
+
+        moveFigures.pawn.forEach((item) => {
+          if (!item?.damage) {
+            const finallyPoint =
+              indexSelectFigure + item.finallyPoint * teamMoveFormat;
+            if (!chessBoard[finallyPoint]?.team && !statusLet) {
+              return moveArray.push({ ...item, finallyPoint });
+            }
+            statusLet = true;
+          } else {
+            const finallyPoint =
+              indexSelectFigure + item.finallyPoint * teamMoveFormat;
+            const damage = item.damage.map(
+              (item) => indexSelectFigure + item * teamMoveFormat
+            );
+            if (
+              chessBoard[finallyPoint]?.team &&
+              chessBoard[finallyPoint]?.team !== teamSelectFigure
+            ) {
+              return moveArray.push({ finallyPoint, damage });
+            }
           }
         });
 
-        return [...filteredMoveArray, ...filteredDamageArray];
+        return moveArray;
       },
       knight: function () {
         const moveArray = [
@@ -157,15 +160,7 @@ const moveFigures = (
               }
 
               if (!chessBoard[nextPoint]?.team) {
-                //Че за хрень, проверь
-                if (indexSelectFigure === selectFigure.index) {
-                  moveArray.push(formatDataMoveFunc(nextPoint, []));
-                  continue;
-                }
-                //
-                moveArray.push(
-                  formatDataMoveFunc(nextPoint, [indexSelectFigure])
-                );
+                moveArray.push(formatDataMoveFunc(nextPoint, []));
                 continue;
               }
 
