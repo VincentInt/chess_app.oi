@@ -1,6 +1,6 @@
 {
   "name": "chess_app",
-  "homepage": "https://vincentint.github.io/chess_app.oi/",
+  "homepage": "https://vincentint.github.io/chess_app.oi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
