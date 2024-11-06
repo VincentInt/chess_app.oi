@@ -1,6 +1,6 @@
 import "./DestroyedItemTeam.css";
 import { useSelector } from "react-redux";
-import figurinesArray from "../../module/figures";
+import figurinesArray from "../../../../images/figures";
 
 const DestroyedItemTeam = ({ team }) => {
   const destroyedFigures = useSelector(

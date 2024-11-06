@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import highlightingMove from "../../module/highlightingMove";
-import figurinesArray from "../../module/figures";
+import moveFigures from "../moveFigures/moveFigures";
+import figurinesArray from "../../../../images/figures";
 import { moveFigureAction } from "../../../../store/matrixChessBoardReducer/matrixChessBoardReducer";
 
 const ChessCell = () => {
@@ -12,15 +12,15 @@ const ChessCell = () => {
   const [highlightingKeys, setHighlightingKeys] = useState([]);
   const [moveTeam, setMoveTeam] = useState("black");
 
-  const highlightingMoveFunc = useMemo(
+  const moveFiguresFunc = useMemo(
     () =>
-      highlightingMove(selectFigure, setHighlightingKeys, chessBoard, moveTeam),
+      moveFigures(selectFigure, setHighlightingKeys, chessBoard, moveTeam),
     [selectFigure, setHighlightingKeys, chessBoard]
   );
 
   useEffect(() => {
     if (selectFigure?.type) {
-      highlightingMoveFunc();
+      moveFiguresFunc();
     } else {
       setHighlightingKeys([]);
     }

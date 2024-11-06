@@ -1,4 +1,4 @@
-const highlightingMove = (
+const moveFigures = (
   selectFigure,
   setHighlightingKeys,
   chessBoard,
@@ -257,4 +257,4 @@ const highlightingMove = (
   };
 };
 
-export default highlightingMove;
+export default moveFigures;
