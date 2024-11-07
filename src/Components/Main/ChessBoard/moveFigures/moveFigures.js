@@ -98,6 +98,7 @@ const moveFigures = (
         dataMoveFigures.rook.forEach((item) => {
           let nextSteps = indexSelectFigure;
           let twoSteps = indexSelectFigure + item;
+
           let isInsideBoard =
             nextSteps <= maxBoardSize && nextSteps >= minBoardSize;
 
@@ -154,6 +155,7 @@ const moveFigures = (
         dataMoveFigures.bishop.forEach((item) => {
           let nextSteps = indexSelectFigure;
           let currentPoint = indexSelectFigure;
+          
           let isInsideBoard =
             nextSteps <= maxBoardSize && nextSteps >= minBoardSize;
 
