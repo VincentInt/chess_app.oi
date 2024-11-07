@@ -28,6 +28,51 @@ const moveFigures = (
         damage: [9],
       },
     ],
+    knight: {
+      moveArray: [
+        {
+          finallyPoint: -17,
+          damage: [-8, -16],
+        },
+        {
+          finallyPoint: -15,
+          damage: [-8, -16],
+        },
+        {
+          finallyPoint: -10,
+          damage: [-1, -2],
+        },
+        {
+          finallyPoint: -6,
+          damage: [1, 2],
+        },
+        {
+          finallyPoint: 6,
+          damage: [-1, -2],
+        },
+        {
+          finallyPoint: 10,
+          damage: [1, 2],
+        },
+        {
+          finallyPoint: 15,
+          damage: [8, 16],
+        },
+        {
+          finallyPoint: 17,
+          damage: [8, 16],
+        },
+      ],
+      skipCellArray: [
+        { position: -1, skipCell: [-10, 6] },
+        { position: 0, skipCell: [-17, -10, 6, 15] },
+        { position: 1, skipCell: [10, -6, -15, 17] },
+        { position: 2, skipCell: [10, -6] },
+      ],
+    },
+    rook: [-8, -1, 1, 8],
+    bishop: [-9, -7, 7, 9],
+    king: [-9, -8, -7, -1, 1, 7, 8, 9],
   };
 
   return () => {
@@ -42,186 +87,140 @@ const moveFigures = (
               indexSelectFigure + item.finallyPoint * teamMoveFormat;
             if (!chessBoard[finallyPoint]?.team && !statusLet) {
               return moveArray.push({ ...item, finallyPoint });
-            }
-            statusLet = true;
+            } else statusLet = true;
           } else {
             const finallyPoint =
               indexSelectFigure + item.finallyPoint * teamMoveFormat;
             const damage = item.damage.map(
               (item) => indexSelectFigure + item * teamMoveFormat
             );
+            const statusNextRow =
+              Math.floor((indexSelectFigure + 8 * teamMoveFormat) / 8) ===
+              Math.floor(finallyPoint / 8);
             if (
               chessBoard[finallyPoint]?.team &&
-              chessBoard[finallyPoint]?.team !== teamSelectFigure
+              chessBoard[finallyPoint]?.team !== teamSelectFigure &&
+              statusNextRow
             ) {
               return moveArray.push({ finallyPoint, damage });
             }
           }
         });
-
         return moveArray;
       },
       knight: function () {
-        const moveArray = [
-          {
-            finallyPoint: -17,
-            damage: [-8, -16],
-          },
-          {
-            finallyPoint: -15,
-            damage: [-8, -16],
-          },
-          {
-            finallyPoint: -10,
-            damage: [-1, -2],
-          },
-          {
-            finallyPoint: -6,
-            damage: [1, 2],
-          },
-          {
-            finallyPoint: 6,
-            damage: [-1, -2],
-          },
-          {
-            finallyPoint: 10,
-            damage: [1, 2],
-          },
-          {
-            finallyPoint: 15,
-            damage: [8, 16],
-          },
-          {
-            finallyPoint: 17,
-            damage: [8, 16],
-          },
-        ].map((item) => {
-          item.finallyPoint =
+        const skipCellArray = [];
+        const skipCellData = moveFigures.knight.skipCellArray;
+
+        const moveArray = moveFigures.knight.moveArray.map((item) => {
+          const finallyPoint =
             indexSelectFigure + item.finallyPoint * teamMoveFormat;
-          item.damage = item.damage?.map(
+          const damage = item.damage?.map(
             (item) => indexSelectFigure + item * teamMoveFormat
           );
-          return item;
+          return { finallyPoint, damage };
         });
-
-        const skipCellArray = [
-          { position: -1, skipCell: [-10, 6] },
-          { position: 0, skipCell: [-17, -10, 6, 15] },
-          { position: 1, skipCell: [10, -6, -15, 17] },
-          { position: 2, skipCell: [10, -6] },
-        ]
-          .map((item) => {
-            if (!((indexSelectFigure + item.position) % 8))
-              return item.skipCell.map((item) => item + indexSelectFigure);
-            return false;
-          })
-          .filter((item) => item !== false)
-          .join("");
-
+        skipCellData.forEach((item) => {
+          const statusSkipPosition = !((indexSelectFigure + item.position) % 8);
+          if (statusSkipPosition) {
+            return skipCellArray.push(
+              ...item.skipCell.map((item) => item + indexSelectFigure)
+            );
+          }
+        });
         const filteredMoveArray = moveArray.filter((item) => {
-          return !chessBoard[item.finallyPoint]?.team &&
-            item.finallyPoint > 0 &&
-            item.finallyPoint <= 64 &&
+          const statusLimits = item.finallyPoint > 0 && item.finallyPoint <= 64;
+          return (
+            !chessBoard[item.finallyPoint]?.team &&
+            statusLimits &&
             !skipCellArray.includes(item.finallyPoint)
-            ? true
-            : false;
+          );
         });
-
         return filteredMoveArray;
       },
       rook: function () {
-        const moveArray = [-8, -1, 1, 8];
+        const moveArray = [];
 
-        return moveArray
-          .map((item) => {
-            const moveArray = [];
-            let index = selectFigure.index;
+        moveFigures.rook.forEach((item) => {
+          let nextPoint = indexSelectFigure;
+          let doublePoint = indexSelectFigure + item;
 
-            while (true) {
-              const nextPoint = index + item;
-              const doublePoint = nextPoint + item;
+          while (nextPoint <= 64 && nextPoint >= 0) {
+            nextPoint += item;
+            doublePoint = nextPoint + item;
 
-              index += item;
-
-              if (nextPoint > 64 || nextPoint < 0) return moveArray;
-
-              if (item % 8 && (!(nextPoint % 8) || !(indexSelectFigure % 8))) {
-                if (
-                  Math.floor(nextPoint / 8) !==
-                  Math.floor(indexSelectFigure / 8)
-                ) {
-                  return moveArray;
-                } else if (item === -1 && !chessBoard[nextPoint]?.team) {
-                  moveArray.push(
-                    formatDataMoveFunc(nextPoint, [indexSelectFigure])
-                  );
-                  return moveArray;
-                }
-              }
-
-              if (!chessBoard[nextPoint]?.team) {
-                moveArray.push(formatDataMoveFunc(nextPoint, []));
-                continue;
-              }
-
+            if (item % 8 && (!(nextPoint % 8) || !(indexSelectFigure % 8))) {
+              const statusNextRow =
+                Math.floor(nextPoint / 8) === Math.floor(indexSelectFigure / 8);
               if (
-                chessBoard[nextPoint]?.team !== moveTeam &&
-                !chessBoard[doublePoint]?.team &&
-                doublePoint > 0 &&
-                doublePoint < 64
+                statusNextRow &&
+                item === -1 &&
+                !chessBoard[nextPoint]?.team
               ) {
-                moveArray.push(formatDataMoveFunc(doublePoint, [nextPoint]));
-                return moveArray;
-              }
-
-              return moveArray;
+                moveArray.push(
+                  formatDataMoveFunc(nextPoint, [indexSelectFigure])
+                );
+                continue;
+              } else break;
             }
-          })
-          .flat();
+            if (!chessBoard[nextPoint]?.team) {
+              moveArray.push(formatDataMoveFunc(nextPoint, []));
+              continue;
+            }
+            if (
+              chessBoard[nextPoint]?.team !== moveTeam &&
+              !chessBoard[doublePoint]?.team &&
+              doublePoint > 0 &&
+              doublePoint < 64
+            ) {
+              if (item % 8) {
+                Math.floor(doublePoint / 8) === Math.floor(nextPoint / 8)
+                  ? moveArray.push(formatDataMoveFunc(doublePoint, [nextPoint]))
+                  : "";
+              } else
+                moveArray.push(formatDataMoveFunc(doublePoint, [nextPoint]));
+            }
+            break;
+          }
+        });
+        return moveArray;
       },
       bishop: function () {
-        const moveArray = [-9, -7, 7, 9];
+        const moveArray = [];
 
-        return moveArray
-          .map((item) => {
-            const dataMoveArray = [];
+        moveFigures.bishop.forEach((item) => {
+          let nextPoint = indexSelectFigure;
+          let currentPoint = indexSelectFigure;
 
-            let index = indexSelectFigure;
+          while (nextPoint <= 64 && nextPoint >= 0) {
+            currentPoint = nextPoint;
+            nextPoint += item;
 
-            while (true) {
-              const currentPoint = index;
-              const nextPoint = (index += item);
-
-              if (nextPoint > 64 || nextPoint < 0) return dataMoveArray;
-
-              if (!(currentPoint % 8) && (item === -9 || item === 7))
-                return dataMoveArray;
-
-              if (!(nextPoint % 8)) {
-                if (item === -9 || item === 7) {
-                  dataMoveArray.push(
-                    formatDataMoveFunc(
-                      nextPoint,
-                      chessBoard[nextPoint]?.team
-                        ? chessBoard[nextPoint]?.team !== teamSelectFigure
-                          ? [nextPoint]
-                          : []
+            if (!(currentPoint % 8) && (item === -9 || item === 7)) break;
+            if (!(nextPoint % 8)) {
+              if (item === -9 || item === 7) {
+                moveArray.push(
+                  formatDataMoveFunc(
+                    nextPoint,
+                    chessBoard[nextPoint]?.team
+                      ? chessBoard[nextPoint]?.team !== teamSelectFigure
+                        ? [nextPoint]
                         : []
-                    )
-                  );
-                }
-
-                return dataMoveArray;
+                      : []
+                  )
+                );
               }
-              if (!chessBoard[nextPoint]?.team) {
-                dataMoveArray.push(formatDataMoveFunc(nextPoint));
-                continue;
-              } else if (chessBoard[nextPoint]?.team !== teamSelectFigure)
-                dataMoveArray.push(formatDataMoveFunc(nextPoint, [nextPoint]));
-              return dataMoveArray;
+              break;
             }
-          })
-          .flat();
+            if (!chessBoard[nextPoint]?.team) {
+              moveArray.push(formatDataMoveFunc(nextPoint));
+              continue;
+            } else if (chessBoard[nextPoint]?.team !== teamSelectFigure)
+              moveArray.push(formatDataMoveFunc(nextPoint, [nextPoint]));
+            break;
+          }
+        });
+        return moveArray;
       },
       queen: function () {
         const cloneBishop = this.bishop();
@@ -230,22 +229,17 @@ const moveFigures = (
         return [...cloneBishop, ...cloneRook];
       },
       king: function () {
-        const moveArray = [-9, -8, -7, -1, 1, 7, 8, 9];
+        const moveArray = [];
 
-        return moveArray
-          .map((item) => {
-            const nextPoint = indexSelectFigure - item;
-
-            if (nextPoint > 64 || nextPoint < 0) return [];
-
-            if (!chessBoard[nextPoint]?.team)
-              return formatDataMoveFunc(nextPoint, []);
-            else if (chessBoard[nextPoint]?.team !== teamSelectFigure)
-              return formatDataMoveFunc(nextPoint, [nextPoint]);
-
-            return [];
-          })
-          .flat();
+        moveFigures.king.forEach((item) => {
+          const nextPoint = indexSelectFigure - item;
+          if (nextPoint > 64 || nextPoint < 0) return;
+          if (!chessBoard[nextPoint]?.team)
+            return moveArray.push(formatDataMoveFunc(nextPoint, []));
+          else if (chessBoard[nextPoint]?.team !== teamSelectFigure)
+            return moveArray.push(formatDataMoveFunc(nextPoint, [nextPoint]));
+        });
+        return moveArray;
       },
     };
     setHighlightingKeys(dataMove[selectFigure.type]());
