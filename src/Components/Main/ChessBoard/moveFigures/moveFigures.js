@@ -199,14 +199,14 @@ const moveFigures = (
             if (!(currentPoint % 8) && (item === -9 || item === 7)) break;
             if (!(nextPoint % 8)) {
               if (item === -9 || item === 7) {
+                const damage =
+                  chessBoard[nextPoint]?.team !== teamSelectFigure
+                    ? [nextPoint]
+                    : [];
                 moveArray.push(
                   formatDataMoveFunc(
                     nextPoint,
-                    chessBoard[nextPoint]?.team
-                      ? chessBoard[nextPoint]?.team !== teamSelectFigure
-                        ? [nextPoint]
-                        : []
-                      : []
+                    chessBoard[nextPoint]?.team ? damage : []
                   )
                 );
               }
