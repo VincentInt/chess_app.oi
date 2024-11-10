@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import moveFigures from "../moveFigures/moveFigures";
 import figurinesArray from "../../../../images/figures";
 import { moveFigureAction } from "../../../../store/matrixChessBoardReducer/matrixChessBoardReducer";
+import dataMoveFigures from "../moveFigures/dataMoveFigures";
+import checkmateFunc from "../moveFigures/checkmate";
 
 const ChessCell = () => {
   const chessBoard = useSelector((state) => state.chessBoard.matrixBoard);
@@ -12,10 +14,18 @@ const ChessCell = () => {
   const [highlightingKeys, setHighlightingKeys] = useState([]);
   const [moveTeam, setMoveTeam] = useState("black");
 
+  const dataMove = useMemo(
+    () => dataMoveFigures(chessBoard, selectFigure, moveTeam),
+    [selectFigure, moveTeam]
+  );
   const moveFiguresFunc = useMemo(
-    () =>
-      moveFigures(selectFigure, setHighlightingKeys, chessBoard, moveTeam),
+    () => moveFigures(selectFigure, setHighlightingKeys, dataMove),
     [selectFigure, setHighlightingKeys, chessBoard]
+  );
+
+  const checkmate = useMemo(
+    () => checkmateFunc(chessBoard, dataMove),
+    [dataMove, chessBoard]
   );
 
   useEffect(() => {
@@ -25,6 +35,10 @@ const ChessCell = () => {
       setHighlightingKeys([]);
     }
   }, [selectFigure]);
+
+  useEffect(() => {
+    checkmate();
+  }, [chessBoard, moveTeam]);
 
   function onChangeFigure(index) {
     setSelectFigure((prev) => {
