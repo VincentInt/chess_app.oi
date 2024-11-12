@@ -1,21 +1,25 @@
 import longMoveFigures from "./longMoveFigures";
 
-const dataMoveFigures = (chessBoard, selectFigure, moveTeam) => {
+const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
   const maxBoardSize = 64;
   const minBoardSize = 0;
   const rowSize = 8;
+
   const indexSelectedFigure = selectFigure?.index;
   const teamSelectFigure = selectFigure?.team;
+
   function formatDataMoveFunc(finallyPoint, damage = []) {
     return {
       finallyPoint: finallyPoint,
       damage: [...damage],
     };
   }
+
   const dataMove = {
     pawn: function (
       indexFigure = indexSelectedFigure,
-      teamFigure = teamSelectFigure
+      teamFigure = teamSelectFigure,
+      chessBoard = chessBoardArg
     ) {
       const teamMoveFormat = teamFigure === "black" ? -1 : 1;
       const moveArray = [];
@@ -50,7 +54,8 @@ const dataMoveFigures = (chessBoard, selectFigure, moveTeam) => {
     },
     knight: function (
       indexFigure = indexSelectedFigure,
-      teamFigure = teamSelectFigure
+      teamFigure = teamSelectFigure,
+      chessBoard = chessBoardArg
     ) {
       const teamMoveFormat = teamFigure === "black" ? -1 : 1;
       const skipCellData = longMoveFigures.knight.skipCellArray;
@@ -83,7 +88,10 @@ const dataMoveFigures = (chessBoard, selectFigure, moveTeam) => {
       });
       return filteredMoveArray;
     },
-    rook: function (indexFigure = indexSelectedFigure) {
+    rook: function (
+      indexFigure = indexSelectedFigure,
+      chessBoard = chessBoardArg
+    ) {
       const moveArray = [];
 
       longMoveFigures.rook.forEach((item) => {
@@ -134,7 +142,10 @@ const dataMoveFigures = (chessBoard, selectFigure, moveTeam) => {
       });
       return moveArray;
     },
-    bishop: function (indexFigure = indexSelectedFigure) {
+    bishop: function (
+      indexFigure = indexSelectedFigure,
+      chessBoard = chessBoardArg
+    ) {
       const moveArray = [];
 
       longMoveFigures.bishop.forEach((item) => {
@@ -174,17 +185,22 @@ const dataMoveFigures = (chessBoard, selectFigure, moveTeam) => {
           break;
         }
       });
+      
       return moveArray;
     },
-    queen: function (indexFigure = indexSelectedFigure) {
-      const cloneBishopMove = dataMove.bishop(indexFigure);
-      const cloneRookMove = dataMove.rook(indexFigure);
+    queen: function (
+      indexFigure = indexSelectedFigure,
+      chessBoard = chessBoardArg
+    ) {
+      const cloneBishopMove = dataMove.bishop(indexFigure, chessBoard);
+      const cloneRookMove = dataMove.rook(indexFigure,  chessBoard);
 
       return [...cloneBishopMove, ...cloneRookMove];
     },
     king: function (
       indexFigure = indexSelectedFigure,
-      teamFigure = teamSelectFigure
+      teamFigure = teamSelectFigure,
+      chessBoard = chessBoardArg
     ) {
       const moveArray = [];
 
@@ -197,7 +213,7 @@ const dataMoveFigures = (chessBoard, selectFigure, moveTeam) => {
         else if (chessBoard[nextSteps]?.team !== teamFigure)
           return moveArray.push(formatDataMoveFunc(nextSteps, [nextSteps]));
       });
-
+      
       return moveArray;
     },
   };

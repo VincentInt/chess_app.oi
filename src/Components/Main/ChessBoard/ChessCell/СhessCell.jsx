@@ -13,6 +13,7 @@ const ChessCell = () => {
   const [selectFigure, setSelectFigure] = useState({});
   const [highlightingKeys, setHighlightingKeys] = useState([]);
   const [moveTeam, setMoveTeam] = useState("black");
+  const [statusCheckmate, setStatusCheckmate] = useState(false);
 
   const dataMove = useMemo(
     () => dataMoveFigures(chessBoard, selectFigure, moveTeam),
@@ -22,29 +23,45 @@ const ChessCell = () => {
     () => moveFigures(selectFigure, setHighlightingKeys, dataMove),
     [selectFigure, setHighlightingKeys, chessBoard]
   );
-
   const checkmate = useMemo(
     () => checkmateFunc(chessBoard, dataMove),
     [dataMove, chessBoard]
   );
 
   useEffect(() => {
-    if (selectFigure?.type) {
-      moveFiguresFunc();
-    } else {
-      setHighlightingKeys([]);
+    if (!statusCheckmate) {
+      if (selectFigure?.type) {
+        moveFiguresFunc();
+      } else {
+        setHighlightingKeys([]);
+      }
     }
   }, [selectFigure]);
 
   useEffect(() => {
-    checkmate();
+    const checkmateClone = checkmate();
+    if (
+      Array.isArray(checkmateClone.damage) &&
+      chessBoard[checkmateClone.index].team === moveTeam
+    ) {
+      setStatusCheckmate(checkmateClone);
+      setSelectFigure({
+        index: checkmateClone.index,
+        ...chessBoard[checkmateClone.index],
+      });
+      setHighlightingKeys(checkmateClone.damage);
+    } else if (checkmateClone !== false) {
+      setStatusCheckmate(true);
+    }
   }, [chessBoard, moveTeam]);
 
   function onChangeFigure(index) {
-    setSelectFigure((prev) => {
-      if (prev.index === index) return {};
-      return { index: index, ...chessBoard[index] };
-    });
+    if (!statusCheckmate) {
+      setSelectFigure((prev) => {
+        if (prev.index === index) return {};
+        return { index: index, ...chessBoard[index] };
+      });
+    }
   }
   function onMoveFigure(index, damage = []) {
     const filteredDamage = damage.filter(
@@ -60,6 +77,7 @@ const ChessCell = () => {
     setMoveTeam((prev) => (prev === "black" ? "white" : "black"));
     setSelectFigure({});
     setHighlightingKeys([]);
+    setStatusCheckmate(false);
   }
   return (
     <>
