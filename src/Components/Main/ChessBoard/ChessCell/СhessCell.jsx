@@ -1,84 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import moveFigures from "../moveFigures/moveFigures";
 import figurinesArray from "../../../../images/figures";
-import { moveFigureAction } from "../../../../store/matrixChessBoardReducer/matrixChessBoardReducer";
-import dataMoveFigures from "../moveFigures/dataMoveFigures";
-import checkmateFunc from "../moveFigures/checkmate";
 
-const ChessCell = () => {
-  const chessBoard = useSelector((state) => state.chessBoard.matrixBoard);
-  const dispatch = useDispatch();
-
-  const [selectFigure, setSelectFigure] = useState({});
-  const [highlightingKeys, setHighlightingKeys] = useState([]);
-  const [moveTeam, setMoveTeam] = useState("black");
-  const [statusCheckmate, setStatusCheckmate] = useState(false);
-
-  const dataMove = useMemo(
-    () => dataMoveFigures(chessBoard, selectFigure, moveTeam),
-    [selectFigure, moveTeam]
-  );
-  const moveFiguresFunc = useMemo(
-    () => moveFigures(selectFigure, setHighlightingKeys, dataMove),
-    [selectFigure, setHighlightingKeys, chessBoard]
-  );
-  const checkmate = useMemo(
-    () => checkmateFunc(chessBoard, dataMove),
-    [dataMove, chessBoard]
-  );
-
-  useEffect(() => {
-    if (!statusCheckmate) {
-      if (selectFigure?.type) {
-        moveFiguresFunc();
-      } else {
-        setHighlightingKeys([]);
-      }
-    }
-  }, [selectFigure]);
-
-  useEffect(() => {
-    const checkmateClone = checkmate();
-    if (
-      Array.isArray(checkmateClone.damage) &&
-      chessBoard[checkmateClone.index].team === moveTeam
-    ) {
-      setStatusCheckmate(checkmateClone);
-      setSelectFigure({
-        index: checkmateClone.index,
-        ...chessBoard[checkmateClone.index],
-      });
-      setHighlightingKeys(checkmateClone.damage);
-    } else if (checkmateClone !== false) {
-      setStatusCheckmate(true);
-    }
-  }, [chessBoard, moveTeam]);
-
-  function onChangeFigure(index) {
-    if (!statusCheckmate) {
-      setSelectFigure((prev) => {
-        if (prev.index === index) return {};
-        return { index: index, ...chessBoard[index] };
-      });
-    }
-  }
-  function onMoveFigure(index, damage = []) {
-    const filteredDamage = damage.filter(
-      (item) => chessBoard[item]?.type && chessBoard[item]?.team !== moveTeam
-    );
-    dispatch(
-      moveFigureAction({
-        startIndex: selectFigure.index,
-        endIndex: index,
-        damage: filteredDamage,
-      })
-    );
-    setMoveTeam((prev) => (prev === "black" ? "white" : "black"));
-    setSelectFigure({});
-    setHighlightingKeys([]);
-    setStatusCheckmate(false);
-  }
+const ChessCell = ({
+  chessBoard,
+  onChangeFigure,
+  onMoveFigure,
+  highlightingKeys,
+  selectFigure,
+  moveTeam,
+  statusWin,
+}) => {
   return (
     <>
       {chessBoard?.map((item, index) => {
@@ -96,7 +26,7 @@ const ChessCell = () => {
             key={index}
             className={count % 2 ? "black_cell_board" : "white_cell_board"}
             onClick={() =>
-              indexCellMove.length
+              indexCellMove.length && !statusWin
                 ? onMoveFigure(index, indexCellMove[0]?.damage)
                 : ""
             }
@@ -113,7 +43,9 @@ const ChessCell = () => {
                   <div
                     className="figure"
                     onClick={() =>
-                      moveTeam === item?.team ? onChangeFigure(index) : ""
+                      moveTeam === item?.team && !statusWin
+                        ? onChangeFigure(index)
+                        : ""
                     }
                     style={
                       moveTeam === item.team
@@ -134,7 +66,9 @@ const ChessCell = () => {
               <div
                 className="figure"
                 onClick={() =>
-                  moveTeam === item?.team ? onChangeFigure(index) : ""
+                  moveTeam === item?.team && !statusWin
+                    ? onChangeFigure(index)
+                    : ""
                 }
                 style={
                   moveTeam === item.team ? { width: "100%" } : { width: "75%" }

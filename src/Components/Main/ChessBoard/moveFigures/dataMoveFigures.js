@@ -106,38 +106,47 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
           twoSteps = nextSteps + item;
           isInsideBoard =
             nextSteps <= maxBoardSize && nextSteps >= minBoardSize;
-          if (
-            item % rowSize &&
-            (!(nextSteps % rowSize) || !(indexFigure % rowSize))
-          ) {
-            const statusNextRow =
-              Math.floor(nextSteps / rowSize) ===
-              Math.floor(indexFigure / rowSize);
-            if (statusNextRow && item === -1 && !chessBoard[nextSteps]?.team) {
-              moveArray.push(formatDataMoveFunc(nextSteps, [indexFigure]));
-              continue;
-            } else break;
+
+          if (item === 1 || item === -1) {
+            if (item === -1 && !(indexFigure % 8)) {
+              break;
+            }
+
+            if (
+              item === 1 &&
+              (!(nextSteps % 8) ||
+                Math.ceil(indexFigure / rowSize) !==
+                  Math.ceil(nextSteps / rowSize))
+            ) {
+              break;
+            }
           }
-          if (!chessBoard[nextSteps]?.team) {
+
+          if (!chessBoard[nextSteps]?.type) {
             moveArray.push(formatDataMoveFunc(nextSteps, []));
-            continue;
-          }
-          if (
-            chessBoard[nextSteps]?.team !== moveTeam &&
-            !chessBoard[twoSteps]?.team &&
-            twoSteps > minBoardSize &&
-            twoSteps < maxBoardSize
+          } else if (
+            chessBoard[nextSteps].team !== chessBoard[indexFigure].team
           ) {
-            if (item % rowSize) {
-              const isSameRow =
-                Math.floor(twoSteps / rowSize) ===
-                Math.floor(nextSteps / rowSize);
-              if (isSameRow) {
-                moveArray.push(formatDataMoveFunc(twoSteps, [nextSteps]));
+            if (
+              !chessBoard[twoSteps]?.type &&
+              twoSteps > minBoardSize &&
+              twoSteps < maxBoardSize
+            ) {
+              if (item === -1 || item === 1) {
+                if (
+                  Math.ceil(indexFigure / rowSize) !==
+                  Math.ceil(twoSteps / rowSize)
+                ) {
+                  break
+                }
               }
-            } else moveArray.push(formatDataMoveFunc(twoSteps, [nextSteps]));
+              moveArray.push(formatDataMoveFunc(twoSteps, [nextSteps]));
+              break;
+            }
+            break;
+          } else {
+            break;
           }
-          break;
         }
       });
       return moveArray;
@@ -185,7 +194,7 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
           break;
         }
       });
-      
+
       return moveArray;
     },
     queen: function (
@@ -193,7 +202,7 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
       chessBoard = chessBoardArg
     ) {
       const cloneBishopMove = dataMove.bishop(indexFigure, chessBoard);
-      const cloneRookMove = dataMove.rook(indexFigure,  chessBoard);
+      const cloneRookMove = dataMove.rook(indexFigure, chessBoard);
 
       return [...cloneBishopMove, ...cloneRookMove];
     },
@@ -213,7 +222,7 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
         else if (chessBoard[nextSteps]?.team !== teamFigure)
           return moveArray.push(formatDataMoveFunc(nextSteps, [nextSteps]));
       });
-      
+
       return moveArray;
     },
   };

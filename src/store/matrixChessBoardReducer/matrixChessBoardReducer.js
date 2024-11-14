@@ -1,4 +1,5 @@
 const defaultState = {
+  statusWin: false,
   destroyedFigures: [],
   matrixBoard: [
     { team: "white", type: "rook" },
@@ -68,9 +69,13 @@ const defaultState = {
   ],
 };
 const MOVE_FIGURE = "MOVE_FIGURE";
+const STATUS_WINNING = "STATUS_WINNING";
 
 export const matrixChessBoardReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case STATUS_WINNING: {
+      return {...state, statusWin: action.teamLose}
+    }
     case MOVE_FIGURE: {
       const matrixBoard = state.matrixBoard;
 
@@ -94,3 +99,4 @@ export const matrixChessBoardReducer = (state = defaultState, action) => {
 };
 
 export const moveFigureAction = (action) => ({ type: MOVE_FIGURE, ...action });
+export const winningAction = (action) => ({type: STATUS_WINNING, ...action})

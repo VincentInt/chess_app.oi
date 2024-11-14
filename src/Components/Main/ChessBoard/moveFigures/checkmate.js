@@ -41,19 +41,16 @@ const checkmateFunc = (chessBoard, dataMove) => {
         return false;
       })[0];
 
-      //все возможные передвежения короля
       const moveKingArray = dataMove[king.type](
         searchDamageKing[0].damage[0],
         king.team
       );
-      //
 
       const filteredSafeSteps = moveKingArray.filter((item) => {
         const chessBoardClone = [...chessBoard];
         chessBoardClone[indexKing] = {};
         chessBoardClone[item.finallyPoint] = { ...king };
 
-        //Весь дамаг на следующем шагу короля считая и его самого
         const damageNextStepsArray = checkChessDamageBoard(chessBoardClone)
           .filter((itemCell) => {
             if (
@@ -78,8 +75,6 @@ const checkmateFunc = (chessBoard, dataMove) => {
                 (itemDamage) => chessBoardClone[itemDamage].type === "king"
               ).length
           );
-
-        //
         return damageNextStepsArray;
       });
       if (filteredSafeSteps.length !== moveKingArray)
