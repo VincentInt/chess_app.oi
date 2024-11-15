@@ -18,9 +18,9 @@ const ChessCell = ({
           (item) => item.finallyPoint === index
         );
         const styleDamage = highlightingKeys
+          ?.filter((item) => item.damage)
           ?.map((item) => item.damage)
           ?.flat();
-
         return (
           <div
             key={index}
@@ -36,7 +36,11 @@ const ChessCell = ({
             styleDamage.includes(index) ? (
               <div
                 className={
-                  styleDamage.includes(index) ? "damage_move_cell" : "move_cell"
+                  styleDamage.includes(index)
+                    ? index === indexCellMove[0]?.finallyPoint
+                      ? "move_cell"
+                      : "damage_move_cell"
+                    : "move_cell"
                 }
               >
                 {item?.type ? (

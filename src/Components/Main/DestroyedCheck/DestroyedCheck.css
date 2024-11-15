@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
+  margin-top: 25px;
   .position_destroyed {
     position: absolute;
   }

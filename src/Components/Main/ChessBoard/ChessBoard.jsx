@@ -115,14 +115,6 @@ const ChessBoard = () => {
           />
         </div>
       </div>
-      {/* {statusWin ? (
-        <div>
-          <h2>Win {statusWin}</h2>
-          <a href="">Reset</a>
-        </div>
-      ) : (
-        ""
-      )} */}
     </div>
   );
 };
