@@ -108,16 +108,10 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
             nextSteps <= maxBoardSize && nextSteps >= minBoardSize;
 
           if (item === 1 || item === -1) {
-            if (item === -1 && !(indexFigure % 8)) {
+            if (item === -1 && (!(indexFigure % 8) || !((nextSteps + 1) % 8))) {
               break;
             }
-
-            if (
-              item === 1 &&
-              (!(nextSteps % 8) ||
-                Math.ceil(indexFigure / rowSize) !==
-                  Math.ceil(nextSteps / rowSize))
-            ) {
+            if (item === 1 && !(nextSteps % 8)) {
               break;
             }
           }
@@ -134,10 +128,10 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
             ) {
               if (item === -1 || item === 1) {
                 if (
-                  Math.ceil(indexFigure / rowSize) !==
-                  Math.ceil(twoSteps / rowSize)
+                  Math.floor(indexFigure / rowSize) !==
+                  Math.floor(twoSteps / rowSize)
                 ) {
-                  break
+                  break;
                 }
               }
               moveArray.push(formatDataMoveFunc(twoSteps, [nextSteps]));
