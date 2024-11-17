@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import matrixChessBoardReducer from "./matrixChessBoardReducer/matrixChessBoardReducer";
+import matrixChessBoardSlice from "./matrixChessBoardReducer/matrixChessBoardReducer";
 
 const rootReducer = combineReducers({
-  chessBoard: matrixChessBoardReducer,
+  chessBoard: matrixChessBoardSlice,
 });
 
 export const store = configureStore({ reducer: rootReducer });

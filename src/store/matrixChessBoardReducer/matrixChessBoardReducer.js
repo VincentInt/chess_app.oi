@@ -1,4 +1,4 @@
-import { createAction, createReducer, current } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 const defaultState = {
   statusWin: false,
   destroyedFigures: [],
@@ -70,31 +70,34 @@ const defaultState = {
   ],
 };
 
-export const moveFigure = createAction("MOVE_FIGURE");
-export const winningCheck = createAction("STATUS_WINNING");
+const matrixChessBoardSlice = createSlice({
+  name: "chessBoard",
+  initialState: defaultState,
+  reducers: {
+    moveFigure(state, action) {
+      const cloneState = current(state);
+      const matrixBoard = [...cloneState.matrixBoard];
+      const payload = action.payload;
 
-export default createReducer(defaultState, (builder) => {
-  builder.addCase(moveFigure, function (state, action) {
-    const cloneState = current(state);
-    const matrixBoard = [...cloneState.matrixBoard];
-    const payload = action.payload;
+      const destroyedFigures = [
+        ...cloneState.destroyedFigures,
+        ...payload?.damage?.map((item) => {
+          const destroyedItem = { figure: matrixBoard[item], index: item };
+          matrixBoard[item] = {};
+          return destroyedItem;
+        }),
+      ];
+      matrixBoard[payload.endIndex] = matrixBoard[payload.startIndex];
+      matrixBoard[payload.startIndex] = {};
 
-    const destroyedFigures = [
-      ...cloneState.destroyedFigures,
-      ...payload?.damage?.map((item) => {
-        const destroyedItem = { figure: matrixBoard[item], index: item };
-        matrixBoard[item] = {};
-        return destroyedItem;
-      }),
-    ];
-    matrixBoard[payload.endIndex] = matrixBoard[payload.startIndex];
-    matrixBoard[payload.startIndex] = {};
-
-    return { destroyedFigures, matrixBoard };
-  });
-  builder.addCase(winningCheck, function (state, action) {
-    const cloneState = current(state);
-    const payload = action.payload;
-    return { ...cloneState, statusWin: payload.teamLose };
-  });
+      return { destroyedFigures, matrixBoard };
+    },
+    winningCheck(state, action) {
+      const cloneState = current(state);
+      const payload = action.payload;
+      return { ...cloneState, statusWin: payload.teamLose };
+    },
+  },
 });
+export const { moveFigure, winningCheck } = matrixChessBoardSlice.actions;
+export default matrixChessBoardSlice.reducer;

@@ -6,10 +6,7 @@ import dataMoveFigures from "./moveFigures/dataMoveFigures.js";
 import moveFigures from "./moveFigures/moveFigures.js";
 import checkmateFunc from "./moveFigures/checkmate.js";
 import checkWin from "./moveFigures/checkLose.js";
-import {
-  moveFigure,
-  winningCheck,
-} from "../../../store/matrixChessBoardReducer/matrixChessBoardReducer.js";
+import { moveFigure, winningCheck} from "../../../store/matrixChessBoardReducer/matrixChessBoardReducer.js"
 
 const ChessBoard = () => {
   const statusWin = useSelector((state) => state.chessBoard.statusWin);
