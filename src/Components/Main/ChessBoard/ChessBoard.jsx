@@ -7,8 +7,8 @@ import moveFigures from "./moveFigures/moveFigures.js";
 import checkmateFunc from "./moveFigures/checkmate.js";
 import checkWin from "./moveFigures/checkLose.js";
 import {
-  moveFigureAction,
-  winningAction,
+  moveFigure,
+  winningCheck,
 } from "../../../store/matrixChessBoardReducer/matrixChessBoardReducer.js";
 
 const ChessBoard = () => {
@@ -55,7 +55,7 @@ const ChessBoard = () => {
     } else if (figuresTeamCount.white === 0) {
       winTeam = "black";
     }
-    dispatch(winningAction({ teamLose: winTeam }));
+    dispatch(winningCheck({ teamLose: winTeam }));
   }, [chessBoard, moveTeam]);
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const ChessBoard = () => {
       (item) => chessBoard[item]?.type && chessBoard[item]?.team !== moveTeam
     );
     dispatch(
-      moveFigureAction({
+      moveFigure({
         startIndex: selectFigure.index,
         endIndex: index,
         damage: filteredDamage,

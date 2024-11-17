@@ -1,3 +1,4 @@
+import { createAction, createReducer, current } from "@reduxjs/toolkit";
 const defaultState = {
   statusWin: false,
   destroyedFigures: [],
@@ -68,35 +69,32 @@ const defaultState = {
     { team: "black", type: "rook" },
   ],
 };
-const MOVE_FIGURE = "MOVE_FIGURE";
-const STATUS_WINNING = "STATUS_WINNING";
 
-export const matrixChessBoardReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case STATUS_WINNING: {
-      return {...state, statusWin: action.teamLose}
-    }
-    case MOVE_FIGURE: {
-      const matrixBoard = state.matrixBoard;
+export const moveFigure = createAction("MOVE_FIGURE");
+export const winningCheck = createAction("STATUS_WINNING");
 
-      const destroyedFigures = [
-        ...state.destroyedFigures,
-        ...action?.damage?.map((item) => {
-          const destroyedItem = { figure: matrixBoard[item], index: item };
-          matrixBoard[item] = {};
-          return destroyedItem;
-        }),
-      ];
+export default createReducer(defaultState, (builder) => {
+  builder.addCase(moveFigure, function (state, action) {
+    const cloneState = current(state);
+    const matrixBoard = [...cloneState.matrixBoard];
+    const payload = action.payload;
 
-      matrixBoard[action.endIndex] = matrixBoard[action.startIndex];
-      matrixBoard[action.startIndex] = {};
+    const destroyedFigures = [
+      ...cloneState.destroyedFigures,
+      ...payload?.damage?.map((item) => {
+        const destroyedItem = { figure: matrixBoard[item], index: item };
+        matrixBoard[item] = {};
+        return destroyedItem;
+      }),
+    ];
+    matrixBoard[payload.endIndex] = matrixBoard[payload.startIndex];
+    matrixBoard[payload.startIndex] = {};
 
-      return { destroyedFigures, matrixBoard };
-    }
-    default:
-      return state;
-  }
-};
-
-export const moveFigureAction = (action) => ({ type: MOVE_FIGURE, ...action });
-export const winningAction = (action) => ({type: STATUS_WINNING, ...action})
+    return { destroyedFigures, matrixBoard };
+  });
+  builder.addCase(winningCheck, function (state, action) {
+    const cloneState = current(state);
+    const payload = action.payload;
+    return { ...cloneState, statusWin: payload.teamLose };
+  });
+});
