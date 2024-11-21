@@ -5,13 +5,17 @@ const stateCookiesDefault = {
 };
 export const setCookiesBoard = (cookiesData) => {
   const objectCookies = {};
+
   for (const key in stateCookiesDefault) {
     if (cookiesData[key]) {
       objectCookies[key] = cookiesData[key];
+    } else {
+      return false;
     }
   }
   localStorage.setItem("board", JSON.stringify(objectCookies));
 };
 export const getCookiesBoard = () => {
-  return JSON.parse(localStorage.getItem("board"));
+  const cookiesObject = localStorage.getItem("board");
+  return cookiesObject ? JSON.parse(cookiesObject) : null;
 };
