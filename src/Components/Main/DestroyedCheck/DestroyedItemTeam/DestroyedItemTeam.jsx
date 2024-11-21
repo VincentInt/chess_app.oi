@@ -6,7 +6,7 @@ const DestroyedItemTeam = ({ team }) => {
   const destroyedFigures = useSelector(
     (state) => state.chessBoard.destroyedFigures
   );
-  
+
   return (
     <div className="container_destroyed">
       <div className="destroyed">

@@ -74,6 +74,19 @@ const matrixChessBoardSlice = createSlice({
   name: "chessBoard",
   initialState: defaultState,
   reducers: {
+    resetBoard() {
+      return { ...defaultState };
+    },
+    loadBoard(state, action) {
+      const cloneState = current(state);
+      const payload = action.payload;
+
+      return {
+        ...cloneState,
+        destroyedFigures: payload.destroyedFigures,
+        matrixBoard: payload.matrixBoard,
+      };
+    },
     moveFigure(state, action) {
       const cloneState = current(state);
       const matrixBoard = [...cloneState.matrixBoard];
@@ -99,5 +112,6 @@ const matrixChessBoardSlice = createSlice({
     },
   },
 });
-export const { moveFigure, winningCheck } = matrixChessBoardSlice.actions;
+export const {resetBoard, loadBoard, moveFigure, winningCheck } =
+  matrixChessBoardSlice.actions;
 export default matrixChessBoardSlice.reducer;

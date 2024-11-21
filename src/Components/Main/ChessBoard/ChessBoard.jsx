@@ -6,17 +6,31 @@ import dataMoveFigures from "./moveFigures/dataMoveFigures.js";
 import moveFigures from "./moveFigures/moveFigures.js";
 import checkmateFunc from "./moveFigures/checkmate.js";
 import checkWin from "./moveFigures/checkLose.js";
-import { moveFigure, winningCheck} from "../../../store/matrixChessBoardReducer/matrixChessBoardReducer.js"
+import {
+  resetBoard,
+  loadBoard,
+  moveFigure,
+  winningCheck,
+} from "../../../store/matrixChessBoardReducer/matrixChessBoardReducer.js";
+import {
+  setCookiesBoard,
+  getCookiesBoard,
+} from "../../../cookies/cookiesBoard.js";
 
 const ChessBoard = () => {
   const statusWin = useSelector((state) => state.chessBoard.statusWin);
   const chessBoard = useSelector((state) => state.chessBoard.matrixBoard);
+  const destroyedFigures = useSelector(
+    (state) => state.chessBoard.destroyedFigures
+  );
+
   const dispatch = useDispatch();
 
   const [selectFigure, setSelectFigure] = useState({});
   const [highlightingKeys, setHighlightingKeys] = useState([]);
   const [moveTeam, setMoveTeam] = useState("black");
   const [statusCheckmate, setStatusCheckmate] = useState(false);
+  const [statusReset, setStatusReset] = useState(false);
 
   const dataMove = useMemo(
     () => dataMoveFigures(chessBoard, selectFigure, moveTeam),
@@ -31,6 +45,38 @@ const ChessBoard = () => {
     [dataMove, chessBoard]
   );
   const checkWinFunc = useMemo(() => checkWin(chessBoard), [chessBoard]);
+
+  useEffect(() => {
+    const cookiesObject = getCookiesBoard();
+    const { matrixBoard, destroyedFigures, moveTeam } = cookiesObject;
+
+    if (matrixBoard && destroyedFigures && moveTeam) {
+      setMoveTeam(moveTeam);
+      dispatch(loadBoard({ matrixBoard, destroyedFigures }));
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(
+      () =>
+        setCookiesBoard({
+          moveTeam: moveTeam,
+          matrixBoard: chessBoard,
+          destroyedFigures: destroyedFigures,
+        }),
+      0
+    );
+  }, [chessBoard, moveTeam]);
+
+  useEffect(() => {
+    if (statusReset) {
+      setSelectFigure({});
+      setMoveTeam("black");
+      setStatusCheckmate(false);
+      dispatch(resetBoard());
+      setStatusReset(false);
+    }
+  }, [statusReset]);
 
   useEffect(() => {
     if (!statusCheckmate) {
@@ -99,6 +145,7 @@ const ChessBoard = () => {
   }
   return (
     <div>
+      <button onClick={() => setStatusReset(true)}>Reset</button>
       <div className="container_chessboard">
         <div className="chessboard">
           <ChessCell
