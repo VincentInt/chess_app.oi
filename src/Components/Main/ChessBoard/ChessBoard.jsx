@@ -48,7 +48,10 @@ const ChessBoard = () => {
 
   useEffect(() => {
     const cookiesObject = getCookiesBoard();
-    const { matrixBoard, destroyedFigures, moveTeam } = cookiesObject;
+    
+    const matrixBoard = cookiesObject?.matrixBoard;
+    const destroyedFigures = cookiesObject?.destroyedFigures;
+    const moveTeam = cookiesObject?.moveTeam;
 
     if (matrixBoard && destroyedFigures && moveTeam) {
       setMoveTeam(moveTeam);
