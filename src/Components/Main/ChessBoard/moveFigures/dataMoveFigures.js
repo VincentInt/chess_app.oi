@@ -171,12 +171,15 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
                 chessBoard[nextSteps]?.team !== teamSelectFigure
                   ? [nextSteps]
                   : [];
-              moveArray.push(
-                formatDataMoveFunc(
-                  nextSteps,
-                  chessBoard[nextSteps]?.team ? damage : []
-                )
-              );
+
+              if (chessBoard[nextSteps]?.team !== teamSelectFigure) {
+                moveArray.push(
+                  formatDataMoveFunc(
+                    nextSteps,
+                    chessBoard[nextSteps]?.team ? damage : []
+                  )
+                );
+              }
             }
             break;
           }
