@@ -11,14 +11,14 @@ const defaultState = {
     { team: "white", type: "bishop" },
     { team: "white", type: "knight" },
     { team: "white", type: "rook" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
-    { team: "white", type: "pawn" },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
+    { team: "white", type: "pawn", firstSteps: true },
     {},
     {},
     {},
@@ -51,14 +51,14 @@ const defaultState = {
     {},
     {},
     {},
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
-    { team: "black", type: "pawn" },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
+    { team: "black", type: "pawn", firstSteps: true },
     { team: "black", type: "rook" },
     { team: "black", type: "knight" },
     { team: "black", type: "bishop" },
@@ -91,6 +91,11 @@ const matrixChessBoardSlice = createSlice({
       const cloneState = current(state);
       const matrixBoard = [...cloneState.matrixBoard];
       const payload = action.payload;
+      const moveFigure = { ...matrixBoard[payload.startIndex] };
+
+      if (moveFigure?.firstSteps) {
+        moveFigure.firstSteps = false;
+      }
 
       const destroyedFigures = [
         ...cloneState.destroyedFigures,
@@ -100,7 +105,8 @@ const matrixChessBoardSlice = createSlice({
           return destroyedItem;
         }),
       ];
-      matrixBoard[payload.endIndex] = matrixBoard[payload.startIndex];
+
+      matrixBoard[payload.endIndex] = moveFigure;
       matrixBoard[payload.startIndex] = {};
 
       return { destroyedFigures, matrixBoard };
@@ -112,6 +118,6 @@ const matrixChessBoardSlice = createSlice({
     },
   },
 });
-export const {resetBoard, loadBoard, moveFigure, winningCheck } =
+export const { resetBoard, loadBoard, moveFigure, winningCheck } =
   matrixChessBoardSlice.actions;
 export default matrixChessBoardSlice.reducer;

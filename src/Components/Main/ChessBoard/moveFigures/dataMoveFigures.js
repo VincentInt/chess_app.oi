@@ -24,8 +24,9 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
       const teamMoveFormat = teamFigure === "black" ? -1 : 1;
       const moveArray = [];
       let stopFurtherMoves = false;
-
+      
       longMoveFigures.pawn.forEach((item) => {
+        if (item.finallyPoint === 16 && !chessBoard[indexFigure]?.firstSteps) return 
         if (!item?.damage) {
           const finallyPoint = indexFigure + item.finallyPoint * teamMoveFormat;
           const nextCell = chessBoard[finallyPoint];
