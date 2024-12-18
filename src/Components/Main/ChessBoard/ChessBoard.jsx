@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import "./ChessBoard.css";
+import { useDispatch, useSelector } from "react-redux";
 import ChessCell from "./ChessCell/СhessCell.jsx";
 import { useEffect, useMemo, useState } from "react";
 import dataMoveFigures from "./moveFigures/dataMoveFigures.js";
@@ -25,7 +25,7 @@ const ChessBoard = () => {
   );
 
   const dispatch = useDispatch();
-
+  
   const [selectFigure, setSelectFigure] = useState({});
   const [highlightingKeys, setHighlightingKeys] = useState([]);
   const [moveTeam, setMoveTeam] = useState("black");
@@ -48,7 +48,7 @@ const ChessBoard = () => {
 
   useEffect(() => {
     const cookiesObject = getCookiesBoard();
-    
+
     const matrixBoard = cookiesObject?.matrixBoard;
     const destroyedFigures = cookiesObject?.destroyedFigures;
     const moveTeam = cookiesObject?.moveTeam;
@@ -118,7 +118,9 @@ const ChessBoard = () => {
       setHighlightingKeys(checkmateClone.damage);
     } else if (checkmateClone !== false) {
       setStatusCheckmate(true);
-      losingAction(moveTeam === "black" ? "white" : "black");
+      //Пофиксить проблему
+      winningCheck(moveTeam === "black" ? "white" : "black");
+      //
     }
   }, [chessBoard, moveTeam]);
 
@@ -148,7 +150,6 @@ const ChessBoard = () => {
   }
   return (
     <div>
-      <button onClick={() => setStatusReset(true)}>Reset</button>
       <div className="container_chessboard">
         <div className="chessboard">
           <ChessCell
@@ -162,6 +163,9 @@ const ChessBoard = () => {
           />
         </div>
       </div>
+      <button className="btn_reset" onClick={() => setStatusReset(true)}>
+        Reset
+      </button>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const WinModalWindow = () => {
           <div className="window">
             <div>
               <h1>Team Win: {statusWin}</h1>
-              <a href="#">Reset</a>
+              <button className="btn_reset">Reset</button>
             </div>
           </div>
         </div>

@@ -1,8 +1,6 @@
 .container_main{
-
-    .container_board{
-        display: flex;
-        justify-content: center;
-        margin-top: 250px;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

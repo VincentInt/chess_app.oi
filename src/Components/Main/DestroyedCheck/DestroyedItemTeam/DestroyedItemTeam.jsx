@@ -10,7 +10,7 @@ const DestroyedItemTeam = ({ team }) => {
   return (
     <div className="container_destroyed">
       <div className="destroyed">
-        <h3>{team[0].toUpperCase() + team.slice(1, team.length)} team:</h3>
+        <h3>Killed {team[0].toUpperCase() + team.slice(1, team.length)} team:</h3>
         {destroyedFigures
           .filter((item) => item.figure.team !== team)
           .map((item, index) => (
