@@ -16,7 +16,6 @@ const checkmateFunc = (chessBoard, dataMove) => {
   }
   return () => {
     const damageArray = checkChessDamageBoard();
-
     const searchDamageKing = damageArray.filter((item) => {
       return item.damage.filter((damageItem) => {
         const king =
@@ -27,7 +26,6 @@ const checkmateFunc = (chessBoard, dataMove) => {
         return false;
       }).length;
     });
-
     if (searchDamageKing.length) {
       let indexKing = null;
       let king = chessBoard.filter((item, index) => {
@@ -40,17 +38,15 @@ const checkmateFunc = (chessBoard, dataMove) => {
         }
         return false;
       })[0];
-
       const moveKingArray = dataMove[king.type](
         searchDamageKing[0].damage[0],
         king.team
       );
-
       const filteredSafeSteps = moveKingArray.filter((item) => {
         const chessBoardClone = [...chessBoard];
         chessBoardClone[indexKing] = {};
         chessBoardClone[item.finallyPoint] = { ...king };
-
+        
         const damageNextStepsArray = checkChessDamageBoard(chessBoardClone)
           .filter((itemCell) => {
             if (
@@ -74,12 +70,12 @@ const checkmateFunc = (chessBoard, dataMove) => {
               itemCell.damage.filter(
                 (itemDamage) => chessBoardClone[itemDamage].type === "king"
               ).length
-          );
-        return damageNextStepsArray;
+          ).length;
+        return !damageNextStepsArray;
       });
-      if (filteredSafeSteps.length !== moveKingArray)
+      if (filteredSafeSteps.length !== moveKingArray) {
         return { damage: filteredSafeSteps, index: indexKing };
-      else return true;
+      } else return true;
     } else return false;
   };
 };
