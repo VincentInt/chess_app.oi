@@ -5,12 +5,27 @@ const checkmateFunc = (chessBoard, dataMove) => {
     chessBoardClone.forEach((item, index) => {
       if (!item?.type) return;
       const figuresDataMove = dataMove[item.type];
-
-      figuresDataMove(index, item.team, chessBoardClone).forEach((moveItem) => {
-        if (moveItem?.damage) {
-          damageArray.push({ damage: moveItem.damage, index });
-        }
-      });
+      if (
+        item.type === "rook" ||
+        item.type === "bishop" ||
+        item.type === "queen"
+      ) {
+        figuresDataMove(index, chessBoardClone, item.team).forEach(
+          (moveItem) => {
+            if (moveItem?.damage) {
+              damageArray.push({ damage: moveItem.damage, index });
+            }
+          }
+        );
+      } else {
+        figuresDataMove(index, item.team, chessBoardClone).forEach(
+          (moveItem) => {
+            if (moveItem?.damage) {
+              damageArray.push({ damage: moveItem.damage, index });
+            }
+          }
+        );
+      }
     });
     return damageArray;
   }
@@ -46,7 +61,7 @@ const checkmateFunc = (chessBoard, dataMove) => {
         const chessBoardClone = [...chessBoard];
         chessBoardClone[indexKing] = {};
         chessBoardClone[item.finallyPoint] = { ...king };
-        
+
         const damageNextStepsArray = checkChessDamageBoard(chessBoardClone)
           .filter((itemCell) => {
             if (

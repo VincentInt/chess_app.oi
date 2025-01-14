@@ -24,9 +24,10 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
       const teamMoveFormat = teamFigure === "black" ? -1 : 1;
       const moveArray = [];
       let stopFurtherMoves = false;
-      
+
       longMoveFigures.pawn.forEach((item) => {
-        if (item.finallyPoint === 16 && !chessBoard[indexFigure]?.firstSteps) return 
+        if (item.finallyPoint === 16 && !chessBoard[indexFigure]?.firstSteps)
+          return;
         if (!item?.damage) {
           const finallyPoint = indexFigure + item.finallyPoint * teamMoveFormat;
           const nextCell = chessBoard[finallyPoint];
@@ -93,6 +94,8 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
       indexFigure = indexSelectedFigure,
       chessBoard = chessBoardArg
     ) {
+      // console.log(indexFigure,chessBoard);
+
       const moveArray = [];
 
       longMoveFigures.rook.forEach((item) => {
@@ -144,6 +147,8 @@ const dataMoveFigures = (chessBoardArg, selectFigure, moveTeam) => {
           }
         }
       });
+      // console.log(indexFigure,chessBoard,moveArray);
+
       return moveArray;
     },
     bishop: function (

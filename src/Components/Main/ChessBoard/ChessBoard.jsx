@@ -31,7 +31,7 @@ const ChessBoard = () => {
   const [moveTeam, setMoveTeam] = useState("black");
   const [statusCheckmate, setStatusCheckmate] = useState(false);
   const [statusReset, setStatusReset] = useState(false);
-  
+
   const dataMove = useMemo(
     () => dataMoveFigures(chessBoard, selectFigure, moveTeam),
     [selectFigure, moveTeam]
@@ -106,8 +106,6 @@ const ChessBoard = () => {
 
   useEffect(() => {
     const checkmateClone = checkmate();
-    // console.log(checkmateClone);
-    
     if (
       Array.isArray(checkmateClone.damage) &&
       chessBoard[checkmateClone.index].team === moveTeam
@@ -120,9 +118,7 @@ const ChessBoard = () => {
       setHighlightingKeys(checkmateClone.damage);
     } else if (checkmateClone !== false) {
       setStatusCheckmate(true);
-      //Пофиксить проблему
       winningCheck(moveTeam === "black" ? "white" : "black");
-      //
     }
   }, [chessBoard, moveTeam]);
 
